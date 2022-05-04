@@ -273,14 +273,14 @@ def vykaz(dif:str,Cas:int, mnozstvi:int, difer=[], m=[], s=[]):
 	s.append(Cas)
 	mi_n = []
 	
-	print("{:<1} {:^5} {:^5}".format("Sebango", "kusu", "cas"))
+	print("{:^8} |{:^8} |{:^8}".format("Sebango", "kusu", "cas"))
 	
 	for kus, mn, s_s in list(zip(difer,m, s)):
 		#vypocet = [mat * cs for mat, cs in zip(m, s)]
 		vypocet = mn * s_s
 		
 		#print(kus,mn, round(vypocet,2))
-		print("{:^5} {:^8} {:^5}".format(kus, mn, round(vypocet,2)))
+		print("{:^8} |{:^8} |{:^8}".format(kus, mn, round(vypocet,2)))
 		mi_n.append(vypocet)
 		
 	print(soucet(celek=mi_n))
@@ -289,7 +289,7 @@ def soucet(celek:round):
 	prac_minuty = 450
 	#vaše norma je: {round(sum(celek)/450,2)}
 	return f"pocet minut= {round(sum(celek),1)} "\
-	       f": {prac_minuty} = norma {round(sum(celek)/prac_minuty ,2)}"
+	       f": {prac_minuty} = norma {round(sum(celek)/prac_minuty ,2)}\n"
 	
 		
 	
@@ -298,10 +298,11 @@ def uzivatel():
 	# Ošetření vyjímky pro chybné zadání
 	try:
 		# Smyčka , podminka walrus vrací True jinak "Q" vrací False  
-		while (diference := input("$> ").upper()) != "Q" and (kusu := int(input("$^> "))) != "Q":
+		while (diference := input("Sebango-> ").upper()) != "Q" and (kusu := int(input("celkem+> "))) != "Q":
 			
 			# Jestli je True
 			if diference:
+				print()
 				Databaze(najdi=diference, kusu=kusu)
 				
 			else:
