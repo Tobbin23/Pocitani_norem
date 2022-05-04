@@ -245,6 +245,7 @@ def Databaze(najdi:str, kusu:int):
 		     "SM107":0.33,\
 		     "SM108":0.33,\
 		     "SM106":0.33,\
+		     "OES":kusu,\
 		     }
 	# Vrátí seznam párů (klíč a hodnotu)
 	for k, i in diference.items():
@@ -288,7 +289,7 @@ def soucet(celek:round):
 	prac_minuty = 450
 	#vaše norma je: {round(sum(celek)/450,2)}
 	return f"pocet minut= {round(sum(celek),1)} "\
-	       f"na {prac_minuty} = norma {round(sum(celek)/prac_minuty ,2)}"
+	       f": {prac_minuty} = norma {round(sum(celek)/prac_minuty ,2)}"
 	
 		
 	
