@@ -15,3 +15,5 @@ def stahni():
 		subprocess.call(["git", "pull", "origin"])
 	else:
 		print("Verze je <Aktuální>")
+		
+stahni()
