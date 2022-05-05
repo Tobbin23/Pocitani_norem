@@ -1,6 +1,7 @@
 from requests import get
 import subprocess
 def kontrola(verze:str):
+	
 	with open("verze.txt", mode="r", encoding="utf-8") as ver_ze:
 		vr = ver_ze.read()
 		if vr != verze:
