@@ -245,7 +245,7 @@ def Databaze(najdi:str, kusu:int):
 		     "SM107":0.33,\
 		     "SM108":0.33,\
 		     "SM106":0.33,\
-		     "OES":kusu,\
+		     "ST":0.125\
 		     }
 	# Vrátí seznam párů (klíč a hodnotu)
 	for k, i in diference.items():
