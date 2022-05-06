@@ -1,3 +1,4 @@
+from banner import Barvy, Logo
 
 def Databaze(najdi:str, kusu:int):
 	"Databaze Sebango a pozadovaný čas"
@@ -272,24 +273,30 @@ def vykaz(dif:str,Cas:int, mnozstvi:int, difer=[], m=[], s=[]):
 	m.append(mnozstvi)
 	s.append(Cas)
 	mi_n = []
-	
-	print("{:^8} |{:^8} |{:^8}".format("Sebango", "kusu", "cas"))
+	#print(Barvy.tucne)
+	print(Barvy.tucne,"\t{:^8} |{:^8} |{:^8}".format("Sebango", "kusu", "cas"))
 	
 	for kus, mn, s_s in list(zip(difer,m, s)):
 		#vypocet = [mat * cs for mat, cs in zip(m, s)]
 		vypocet = mn * s_s
 		
 		#print(kus,mn, round(vypocet,2))
-		print("{:^8} |{:^8} |{:^8}".format(kus, mn, round(vypocet,2)))
+		print(Barvy.tucne,"\t{:^8} |{:^8} |{:^8}".format(kus, mn, round(vypocet,2)))
 		mi_n.append(vypocet)
 		
 	print(soucet(celek=mi_n))
 	
 def soucet(celek:round):
 	prac_minuty = 450
-	#vaše norma je: {round(sum(celek)/450,2)}
-	return f"pocet minut= {round(sum(celek),1)} "\
-	       f": {prac_minuty} = norma {round(sum(celek)/prac_minuty ,2)}\n"
+	ok_nok = round(sum(celek)/prac_minuty ,2)
+	if ok_nok <= 0.85:
+		#vaše norma je: {round(sum(celek)/450,2)}
+		return f"\t{Barvy.tucne}pocet minut= {round(sum(celek),1)} "\
+		       f": {prac_minuty} = norma {Barvy.tucne}{Barvy.ruda}{ok_nok}\n"
+	elif ok_nok > 0.85:
+		return f"\t{Barvy.tucne}pocet minut= {round(sum(celek),1)} "\
+			       f": {prac_minuty} = norma {Barvy.tucne}{Barvy.zelena}{ok_nok}\n"
+		
 	
 		
 	
@@ -297,8 +304,9 @@ def uzivatel():
 	#Databaze(najdi="TR087", kusu=276)
 	# Ošetření vyjímky pro chybné zadání
 	try:
+		print(Logo())
 		# Smyčka , podminka walrus vrací True jinak "Q" vrací False  
-		while (diference := input("Sebango-> ").upper()) != "Q" and (kusu := int(input("celkem+> "))) != "Q":
+		while (diference := input(f"\t{Barvy.reset}Sebango-> ").upper()) != "Q" and (kusu := int(input(f"\tcelkem+> "))) != "Q":
 			
 			# Jestli je True
 			if diference:
@@ -313,4 +321,3 @@ def uzivatel():
 	except KeyboardInterrupt as KI:
 		print(KI)
 uzivatel()
-	
