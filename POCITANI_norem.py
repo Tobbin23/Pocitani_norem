@@ -248,19 +248,25 @@ def Databaze(najdi:str, kusu:int):
 		     "SM106":0.33,\
 		     "ST":0.125\
 		     }
-	# Vrátí seznam párů (klíč a hodnotu)
-	for k, i in diference.items():
+	try:
+		# Vrátí seznam párů (klíč a hodnotu)
+		for k, i in diference.items():
 		
-		# Vrátí True pokud je nalezen klic
-		if najdi in k:
+			# Vrátí True pokud je nalezen klic
+			if najdi in k:
 			
-			# Přeposílání dat do funkce (vykaz)
-			vykaz(dif=k, Cas=i, mnozstvi=kusu)
+				# Přeposílání dat do funkce (vykaz)
+				# k = Sebango
+				# i = cas
+				vykaz(dif=k, Cas=i, mnozstvi=kusu)
 			
-		# Vraci False, výtisk je potlačen
-		else:
-			pass
-		
+			# Vraci False, výtisk je potlačen
+			else:
+				pass
+	except ValueError as VE:
+		print("chybné Sebango")
+	except KeyboardInterrupt as KI:
+		print(Ki)
 	#for i in diference:
 		#cas = i.get(najdi)
 		#if cas:
@@ -288,12 +294,18 @@ def vykaz(dif:str,Cas:int, mnozstvi:int, difer=[], m=[], s=[]):
 	
 def soucet(celek:round):
 	prac_minuty = 450
+	# Vypocet odpracovanych minut pracovnika
 	ok_nok = round(sum(celek)/prac_minuty ,2)
-	if ok_nok <= 0.85:
+	
+	# Vypocet chybejicich minut do 85%
+	do_ok = round(sum(celek))-prac_minuty
+	
+	if ok_nok <= 0.84:
 		#vaše norma je: {round(sum(celek)/450,2)}
 		return f"\t{Barvy.tucne}pocet minut= {round(sum(celek),1)} "\
-		       f": {prac_minuty} = norma {Barvy.tucne}{Barvy.ruda}{ok_nok}\n"
-	elif ok_nok > 0.85:
+		       f": {prac_minuty} = norma {Barvy.tucne}{Barvy.ruda}{ok_nok}\n"\
+		       f"\tDo normy {do_ok} minut\n"
+	elif ok_nok >= 0.85:
 		return f"\t{Barvy.tucne}pocet minut= {round(sum(celek),1)} "\
 			       f": {prac_minuty} = norma {Barvy.tucne}{Barvy.zelena}{ok_nok}\n"
 		
@@ -319,5 +331,5 @@ def uzivatel():
 	except ValueError as VE:
 		print("chybna hodnota")
 	except KeyboardInterrupt as KI:
-		print(KI)
+		print("Relace ukončena")
 uzivatel()
