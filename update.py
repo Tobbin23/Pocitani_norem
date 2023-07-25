@@ -1,5 +1,6 @@
 from requests import get
 import subprocess
+#25.7.23
 def kontrola(verze:str):
 	
 	with open("verze.txt", mode="r", encoding="utf-8") as ver_ze:
